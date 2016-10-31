@@ -1,0 +1,47 @@
+rx-progressbar {
+    width: 100%;
+}
+.rxProgressbar {
+    background-color: @progressbar-background-color;
+    border: 1px solid @progressbar-border-color;
+    height: @progressbar-line-height-computed;
+    margin-bottom: @progressbar-line-height-computed;
+    padding: 1px;
+    &__value {
+        background-color: @progressbar-default-background-color;
+        color: @progressbar-default-text-color;
+        line-height: @progressbar-line-height-computed;
+        text-align: center;
+        width: 0%;
+        height: 100%;
+    }
+    &--striped {
+        .rxProgressbar__value {
+            .animation(progress-bar-stripes 2s linear infinite);
+            #gradient > .striped();
+                background-size: 40px 40px;
+            #gradient {
+                .horizontal(@start-color: @gray-800;
+                @end-color: @gray-950;
+                @start-percent: 0%;
+                @end-percent: 100%) {
+                    background-image: -webkit-linear-gradient(left, @start-color @start-percent, @end-color @end-percent); // Safari 5.1-6, Chrome 10+
+                    background-image: -o-linear-gradient(left, @start-color @start-percent, @end-color @end-percent); // Opera 12
+                    background-image: linear-gradient(to right, @start-color @start-percent, @end-color @end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+                    background-repeat: repeat-x;
+                }
+                .striped(@color: rgba(255, 255, 255, .15);
+                @angle: 45deg) {
+                    background-image: -webkit-linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
+                    background-image: -o-linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
+                    background-image: linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
+                }
+            }
+            .animation(@animation) {
+                -webkit-animation: @animation;
+                -o-animation: @animation;
+                animation: @animation;
+            }
+        }
+    }
+}
